@@ -8,5 +8,5 @@ const api = Router();
 api.use("/pokemon", pokemon);
 api.use("/type", type);
 api.use("/collection", collection);
-
+// api.use("/id", id)
 module.exports = api;
