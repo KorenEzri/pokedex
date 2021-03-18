@@ -9,31 +9,18 @@ pokemon.get("/:name", async (req, res) => {
   try {
     const pokemonName = req.params.name;
     const { data } = await network.get(
-      `${pokeAPI_ROUTES.allData}${pokemonName}`
+      `${pokeAPI_ROUTES.allData}pokemon/${pokemonName}`
     );
-    const { name, height, weight, type } = data;
+    const { name, height, weight, type, sprites } = data;
     const responseObject = {
       name,
       height,
       weight,
       type,
-    };
-    res.json(`RECEIVED!, ${JSON.stringify(responseObject)}`);
-  } catch ({ message }) {
-    console.log(message);
-  }
-});
-
-pokemon.get("/:name", async (req, res) => {
-  try {
-    const pokemonName = req.params.name;
-    const { data } = await network.get(pokemonDataLink + pokemonName);
-    const { name, height, weight, type } = data;
-    const responseObject = {
-      name,
-      height,
-      weight,
-      type,
+      pictures: {
+        front: sprites.front_default,
+        back: sprites.back_default,
+      },
     };
     res.json(`RECEIVED!, ${JSON.stringify(responseObject)}`);
   } catch ({ message }) {
