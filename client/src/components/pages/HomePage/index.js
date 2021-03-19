@@ -34,7 +34,7 @@ export default function Homepage() {
   const [searchResults, setSearchResultList] = useState([]);
   const [pokemonData, setPokemonData] = useState({});
   const [dest, setDestination] = useState("");
-
+  const [searched, setSearched] = useState(false);
   const baseUrl = `http://localhost:3001/api/${dest}/`;
 
   const handleResultSuggestions = (searchInput) => {
@@ -59,6 +59,7 @@ export default function Homepage() {
       const query = `${baseUrl}${searchInput}`;
       const { data } = await network.get(query);
       setPokemonData(data);
+      setSearched("true");
     } catch ({ message }) {
       console.log(message);
     }
@@ -79,9 +80,11 @@ export default function Homepage() {
           sendSearchQuery={sendSearchQuery}
         />
       </section>
-      <section>
-        <PokemonPresentor pokemonData={pokemonData} />
-      </section>
+      {searched && (
+        <section>
+          <PokemonPresentor pokemonData={pokemonData} />
+        </section>
+      )}
     </div>
   );
 }
