@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,CAAC;EACX,eAAe,EAAE,IAAI;CACtB",
+    "sources": [
+        "SearchResultList.scss"
+    ],
+    "names": [],
+    "file": "SearchResultList.css"
+}

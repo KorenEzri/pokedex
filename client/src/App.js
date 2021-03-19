@@ -10,7 +10,6 @@ function App() {
   return (
     <div className="wrapper">
       <Header />
-      <Searchbar />
       <div className="main">
         <Router>
           <Switch>

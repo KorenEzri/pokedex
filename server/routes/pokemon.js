@@ -26,7 +26,7 @@ pokemon.get("/", (req, res) => {
 
 pokemon.get("/:name", async (req, res) => {
   try {
-    const pokemonName = req.params.name;
+    const pokemonName = req.params.name.toLowerCase();
     const { data } = await network.get(
       `${pokeAPI_ROUTES.allData}pokemon/${pokemonName}`
     );

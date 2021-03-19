@@ -1,0 +1,14 @@
+.search-result:before {
+  content: "";
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  background: url("./pokeball.jpg") no-repeat 0 0;
+  background-size: 50px 50px;
+  margin: -10px;
+}
+
+.search-result {
+  cursor: pointer;
+  width: 30%;
+}

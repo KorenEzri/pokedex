@@ -1,6 +1,7 @@
 import React from "react";
-import SearchResult from "./SearchResult/index";
+import SearchResultList from "./SearchResultList/index";
+import "./Searchbar.css";
 
 export default function Searchbar() {
-  return <div className="search-wrapper"></div>;
+  return <input type="text" placeholder="Search Pokemon" />;
 }
