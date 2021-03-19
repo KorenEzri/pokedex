@@ -7,13 +7,13 @@ type.get("/", (req, res) => {
   res.send("type route");
 });
 
-type.get("/:name", async (req, res) => {
+type.get("/:typeName", async (req, res) => {
   try {
-    const pokemonName = req.params.name;
-    const address = `${pokeAPI_ROUTES.type}${pokemonName}`;
+    const pokemoType = req.params.typeName;
+    const address = `${pokeAPI_ROUTES.type}${pokemoType}`;
     console.log(address);
-    const { data } = await network.get(`${pokeAPI_ROUTES.type}${pokemonName}`);
-    res.json(JSON.stringify(data));
+    const { data } = await network.get(`${pokeAPI_ROUTES.type}${pokemoType}`);
+    res.send(data);
   } catch ({ message }) {
     console.log(message);
   }

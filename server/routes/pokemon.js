@@ -11,18 +11,19 @@ pokemon.get("/:name", async (req, res) => {
     const { data } = await network.get(
       `${pokeAPI_ROUTES.allData}pokemon/${pokemonName}`
     );
-    const { name, height, weight, type, sprites } = data;
+    const { name, height, weight, type, sprites, id } = data;
     const responseObject = {
       name,
       height,
       weight,
       type,
+      id,
       pictures: {
         front: sprites.front_default,
         back: sprites.back_default,
       },
     };
-    res.json(`RECEIVED!, ${JSON.stringify(responseObject)}`);
+    res.send(responseObject);
   } catch ({ message }) {
     console.log(message);
   }
