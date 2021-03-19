@@ -65,9 +65,28 @@ export default function Homepage() {
       console.log(message);
     }
   };
+
+  const getTypeInfo = async (type) => {
+    setDestination("type");
+    try {
+      const query = `${baseUrl}${type}`;
+      console.log(query);
+      const { data } = await network.get(query);
+      console.log(data.pokemon);
+      const pokemons = data.pokemon.map((pokemon) => {
+        /*this list should be rendered and presented on the page,
+         and every pokemon should have an onClick function that present it with PokemonPresentor  */
+        console.log(pokemon.pokemon.name);
+      });
+    } catch ({ message }) {
+      console.log(message);
+    }
+  };
   const catchPokemon = async (pokemonData) => {
     setDestination("collection/catch");
+    console.log(pokemonData);
     try {
+      // REQUEST FAILES :(((
       const query = `${baseUrl}${pokemonData.name}`;
       const body = pokemonData;
       const req = await network.post(query, { data: body });
@@ -96,6 +115,7 @@ export default function Homepage() {
           <PokemonPresentor
             pokemonData={pokemonData}
             catchPokemon={catchPokemon}
+            getTypeInfo={getTypeInfo}
             caught={caught}
           />
         </section>

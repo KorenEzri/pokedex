@@ -9,10 +9,10 @@ type.get("/", (req, res) => {
 
 type.get("/:typeName", async (req, res) => {
   try {
-    const pokemoType = req.params.typeName.toLowerCase();
-    const address = `${pokeAPI_ROUTES.type}${pokemoType}`;
+    const pokemonType = req.params.typeName.toLowerCase();
+    const address = `${pokeAPI_ROUTES.type}${pokemonType}`;
     console.log(address);
-    const { data } = await network.get(`${pokeAPI_ROUTES.type}${pokemoType}`);
+    const { data } = await network.get(`${pokeAPI_ROUTES.type}${pokemonType}`);
     res.send(data);
   } catch ({ message }) {
     console.log(message);
