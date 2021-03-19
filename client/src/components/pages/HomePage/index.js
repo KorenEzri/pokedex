@@ -35,6 +35,7 @@ export default function Homepage() {
   const [pokemonData, setPokemonData] = useState({});
   const [dest, setDestination] = useState("");
   const [searched, setSearched] = useState(false);
+  const [caught, setCaught] = useState(false);
   const baseUrl = `http://localhost:3001/api/${dest}/`;
 
   const handleResultSuggestions = (searchInput) => {
@@ -64,7 +65,17 @@ export default function Homepage() {
       console.log(message);
     }
   };
-
+  const catchPokemon = async (pokemonData) => {
+    setDestination("collection/catch");
+    try {
+      const query = `${baseUrl}${pokemonData.name}`;
+      const body = pokemonData;
+      const req = await network.post(query, { data: body });
+      alert(`${pokemonData.name} added to your collection!`);
+    } catch ({ message }) {
+      console.log(message);
+    }
+  };
   return (
     <div>
       <section id="search-area">
@@ -82,7 +93,11 @@ export default function Homepage() {
       </section>
       {searched && (
         <section>
-          <PokemonPresentor pokemonData={pokemonData} />
+          <PokemonPresentor
+            pokemonData={pokemonData}
+            catchPokemon={catchPokemon}
+            caught={caught}
+          />
         </section>
       )}
     </div>

@@ -1,7 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-export default function PokemonPresentor({ pokemonData }) {
+export default function PokemonPresentor({
+  pokemonData,
+  catchPokemon,
+  caught,
+}) {
   return (
     <div className="pokemon-wrapper">
       <div className="name">{pokemonData.name}</div>
@@ -16,6 +20,7 @@ export default function PokemonPresentor({ pokemonData }) {
       />
       <div>height:{pokemonData.height}</div>
       <div>weight:{pokemonData.weight}</div>
+      <button onClick={() => catchPokemon(pokemonData)}>Catch!</button>
     </div>
   );
 }
