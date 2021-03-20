@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import network from "../../../network/network";
 import PokemonPresentor from "../../PokemonPresentor/index";
+import DisplayCollection from "../../DisplayCollection/index";
 import SearchResultList from "../../Searchbar/SearchResultList";
 import PokemonNames from "../../Searchbar/pokemonNames";
 
@@ -128,7 +129,7 @@ export default function Homepage() {
         />
       </section>
       {searched && (
-        <section>
+        <section className="pokemon-presentor">
           <PokemonPresentor
             pokemonData={pokemonData}
             catchAndRelease={{ catch: catchPokemon, release: releasePokemon }}
@@ -136,6 +137,9 @@ export default function Homepage() {
           />
         </section>
       )}
+      <section id="display-collection">
+        <DisplayCollection />
+      </section>
     </div>
   );
 }
