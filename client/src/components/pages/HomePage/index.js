@@ -138,13 +138,22 @@ export default function Homepage() {
     let destination = "collection";
     const baseUrl = `http://localhost:3001/api/${destination}/`;
     const { data } = await network.get(baseUrl);
+    console.log(data);
     const userCollectionArray = data.map((pokemonItem) => {
       return pokemonItem.pokemonData;
     });
     setUserCollection(userCollectionArray);
     return userCollectionArray;
   };
-  getUserCollection();
+  useEffect(() => {
+    (async () => {
+      try {
+        getUserCollection();
+      } catch ({ message }) {
+        console.log(message);
+      }
+    })();
+  }, []);
   return (
     <div>
       <section id="search-area">
