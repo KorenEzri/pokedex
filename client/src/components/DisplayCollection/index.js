@@ -5,9 +5,9 @@ import "./DisplayCollection.css";
 export default ({ userCollection, sendSearchQuery }) => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
+  console.log(userCollection);
   return (
     <div style={{ padding: `0 ${chevronWidth}px` }}>
-      <h1>collection</h1>
       <ItemsCarousel
         requestToChangeActive={setActiveItemIndex}
         activeItemIndex={activeItemIndex}
@@ -26,7 +26,6 @@ export default ({ userCollection, sendSearchQuery }) => {
               }}
               key={index}
             >
-              {" "}
               <legend className="pokemon-collection-wrapper">
                 {pokemon.name}
                 <img src={pokemon.pictures.front} />
