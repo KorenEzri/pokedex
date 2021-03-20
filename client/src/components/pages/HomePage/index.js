@@ -66,9 +66,11 @@ export default function Homepage() {
     let destination = "collection/catch";
     const baseUrl = `http://localhost:3001/api/${destination}/`;
     try {
-      pokemonData.isCaught = true;
       const query = `${baseUrl}`;
-      await network.post(query, pokemonData);
+      const { data } = await network.post(query, pokemonData);
+      if (data === "already caught!") {
+        return alert(`${pokemonData.name} is ${data}`);
+      }
       alert(`${pokemonData.name} added to your collection!`);
       const currentCollection = await getUserCollection();
       console.log(currentCollection);

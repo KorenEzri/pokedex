@@ -1,19 +1,7 @@
 const { Router } = require("express");
-const fs = require("fs");
+const Pokemon = require("../models/PokeCollection");
 const pokemon = Router();
 const { network, pokeAPI_ROUTES } = require("../utils/pokeAPI");
-const { collectionObjectArray } = require("./collection");
-
-const checkIfCaught = (name) => {
-  const doesExist = collectionObjectArray.find(
-    (pokemon) => pokemon.name === name
-  );
-  if (doesExist) {
-    return true;
-  } else {
-    return false;
-  }
-};
 
 pokemon.get("/", (req, res) => {
   res.send("Pokemon route");
@@ -26,10 +14,8 @@ pokemon.get("/:name", async (req, res) => {
       `${pokeAPI_ROUTES.allData}pokemon/${pokemonName}`
     );
     const { name, height, weight, types, sprites, id } = data;
-    const doesExist = checkIfCaught(name);
     const responseObject = {
       name,
-      isCaught: doesExist,
       height,
       weight,
       types,
@@ -54,7 +40,6 @@ pokemon.get("/:id", async (req, res) => {
     const { name, height, weight, type, sprites, id } = data;
     const responseObject = {
       name,
-      isCaught: false,
       height,
       weight,
       type,

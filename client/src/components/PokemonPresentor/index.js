@@ -39,17 +39,14 @@ export default function PokemonPresentor({
           );
         })}
       </div> */}
-      {console.log(pokemonData)}
-      {!pokemonData.isCaught && (
-        <button
-          onClick={(e) => {
-            catchPokemon(pokemonData);
-            e.target.innerText = "Caught!";
-          }}
-        >
-          Catch!
-        </button>
-      )}
+      <button
+        onClick={(e) => {
+          catchPokemon(pokemonData);
+          e.target.innerText = "Caught!";
+        }}
+      >
+        Catch!
+      </button>
     </div>
   );
 }
