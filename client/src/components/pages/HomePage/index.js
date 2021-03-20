@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { useEffect, useState } from "react";
 import network from "../../../network/network";
 import PokemonPresentor from "../../PokemonPresentor/index";
@@ -6,6 +7,19 @@ import DisplayCollection from "../../DisplayCollection/index";
 import SearchResultList from "../../Searchbar/SearchResultList";
 import PokemonNames from "../../Searchbar/pokemonNames";
 import TypeList from "../../TypeList/index";
+// const tempArray = [];
+// const getAllPics = async () => {
+//   for (let pokemon of PokemonNames) {
+//     let pName = pokemon.toLowerCase();
+//     const { data } = await network.get(
+//       `http://localhost:3001/api/pokemon/${pName}`
+//     );
+//     tempArray.push(data.pictures.front);
+//   }
+//   console.log(tempArray);
+// };
+// getAllPics();
+// console.log(tempArray);
 
 const searchList = (list, input) => {
   const firstLetterUppercase = (string) => {
@@ -31,12 +45,14 @@ const searchList = (list, input) => {
     return searchResults;
   }
 };
+
 export default function Homepage() {
   const [textInputValue, setTextInputValue] = useState("");
   const [searchResults, setSearchResultList] = useState([]);
   const [pokemonData, setPokemonData] = useState({});
   const [presentingPokemon, setPokePresentation] = useState(false);
   const [typeList, setTypeList] = useState([]);
+  const [userCollection, setUserCollection] = useState([]);
 
   const handleResultSuggestions = (searchInput) => {
     const searchSuggestions = searchList(PokemonNames, searchInput);
@@ -108,8 +124,25 @@ export default function Homepage() {
     let destination = "collection/";
     const baseUrl = `http://localhost:3001/api/${destination}/`;
     const { data } = await network.get(baseUrl);
-    return data;
+    const userCollectionArray = data.map((pokemonItem) => {
+      return pokemonItem.pokemonData;
+    });
+    setUserCollection(userCollectionArray);
+    // return data;
   };
+
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const {
+  //         data: { userCollection },
+  //       } = await network.get("http://localhost:3001/api/collection/");
+  //       setUserCollection(userCollection);
+  //     } catch ({ message }) {
+  //       console.log(message);
+  //     }
+  //   })();
+  // }, []);
 
   return (
     <div>
@@ -132,6 +165,7 @@ export default function Homepage() {
             pokemonData={pokemonData}
             catchAndRelease={{ catch: catchPokemon, release: releasePokemon }}
             getTypeInfo={getTypeInfo}
+            getUserCollection={getUserCollection}
           />
         </section>
       )) || (
@@ -140,7 +174,7 @@ export default function Homepage() {
         </section>
       )}
       <section id="display-collection">
-        <DisplayCollection />
+        {/* <DisplayCollection userCollection={userCollection} /> */}
       </section>
     </div>
   );

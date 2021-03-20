@@ -1,3 +1,5 @@
+import network from "../../network/network";
+
 export default PokemonNames = [
   "Bulbasaur",
   "Ivysaur",

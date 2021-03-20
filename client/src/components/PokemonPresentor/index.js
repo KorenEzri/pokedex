@@ -1,9 +1,26 @@
 import React from "react";
+import { useEffect, useState } from "react";
+
 export default function PokemonPresentor({
   pokemonData,
   catchAndRelease,
   getTypeInfo,
+  getUserCollection,
 }) {
+  const [isPokemonCaught, setIsPokemonCaught] = useState(false);
+  const isCaught = async (pokemon) => {
+    const collection = await getUserCollection();
+    if (collection) {
+      if (
+        collection.filter((item) => item.pokemonId === pokemon.id).length > 0
+      ) {
+        setIsPokemonCaught(true);
+      } else {
+        setIsPokemonCaught(false);
+      }
+    }
+  };
+  isCaught(pokemonData);
   const getPokemonTypes = (pokemonData) => {
     const types = [];
     pokemonData.types.forEach((type) => {
@@ -40,22 +57,28 @@ export default function PokemonPresentor({
           );
         })}
       </div>
-      <button
-        onClick={(e) => {
-          catchAndRelease.catch(pokemonData);
-          e.target.innerText = "Caught!";
-        }}
-      >
-        Catch!
-      </button>
-      <button
-        onClick={(e) => {
-          catchAndRelease.release(pokemonData);
-          e.target.innerText = "Released!";
-        }}
-      >
-        Release :)
-      </button>
+      {isPokemonCaught ||
+        ((
+          <button
+            onClick={(e) => {
+              catchAndRelease.catch(pokemonData);
+              getUserCollection();
+              e.target.innerText = "Caught!";
+            }}
+          >
+            Catch!
+          </button>
+        ) && (
+          <button
+            onClick={(e) => {
+              catchAndRelease.release(pokemonData);
+              getUserCollection();
+              e.target.innerText = "Released!";
+            }}
+          >
+            Release :)
+          </button>
+        ))}
     </div>
   );
 }
