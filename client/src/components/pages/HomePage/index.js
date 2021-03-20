@@ -68,7 +68,7 @@ export default function Homepage() {
     try {
       pokemonData.isCaught = true;
       const query = `${baseUrl}`;
-      await network.post(query, JSON.stringify(pokemonData));
+      await network.post(query, pokemonData);
       alert(`${pokemonData.name} added to your collection!`);
       const currentCollection = await getUserCollection();
       console.log(currentCollection);
