@@ -7,7 +7,7 @@ export default function SearchResultList({ searchResults, sendSearchQuery }) {
       {searchResults.map((result, index) => {
         return (
           <SearchResult
-            index={index}
+            key={index}
             value={result}
             sendSearchQuery={sendSearchQuery}
           />

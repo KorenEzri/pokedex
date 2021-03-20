@@ -2,27 +2,22 @@ const { Router } = require("express");
 const fs = require("fs");
 const pokemon = Router();
 const { network, pokeAPI_ROUTES } = require("../utils/pokeAPI");
+const { collectionObjectArray } = require("./collection");
+
+const checkIfCaught = (name) => {
+  const doesExist = collectionObjectArray.find(
+    (pokemon) => pokemon.name === name
+  );
+  if (doesExist) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 pokemon.get("/", (req, res) => {
   res.send("Pokemon route");
 });
-
-// const validatePokemonID = async (pokemonID) => {
-//   const filePath = `./pokemon-ids.json`
-//   // {id: 132, name:ditto }
-//   const storedPokemonIDS = fs.readFile(filePath, `utf8`, (err, data) => {
-//     if(!err){
-//       return data;
-//     } else{
-//       console.log(err);
-//     }
-//     const pokemonIDInStorage  = data.filter((pokeObject =>{
-//       pokeObject.id === pokemonID
-//     })) || false
-//     if (pokemonIDInStorage) {
-
-//     }
-//   })
-// }
 
 pokemon.get("/:name", async (req, res) => {
   try {
@@ -31,8 +26,10 @@ pokemon.get("/:name", async (req, res) => {
       `${pokeAPI_ROUTES.allData}pokemon/${pokemonName}`
     );
     const { name, height, weight, types, sprites, id } = data;
+    const doesExist = checkIfCaught(name);
     const responseObject = {
       name,
+      isCaught: doesExist,
       height,
       weight,
       types,
@@ -57,6 +54,7 @@ pokemon.get("/:id", async (req, res) => {
     const { name, height, weight, type, sprites, id } = data;
     const responseObject = {
       name,
+      isCaught: false,
       height,
       weight,
       type,

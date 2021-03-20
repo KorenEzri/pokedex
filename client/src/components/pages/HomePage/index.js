@@ -33,18 +33,14 @@ export default function Homepage() {
   const [textInputValue, setTextInputValue] = useState("");
   const [searchResults, setSearchResultList] = useState([]);
   const [pokemonData, setPokemonData] = useState({});
-  const [dest, setDestination] = useState("");
   const [searched, setSearched] = useState(false);
   const [caught, setCaught] = useState(false);
-  const baseUrl = `http://localhost:3001/api/${dest}/`;
 
   const handleResultSuggestions = (searchInput) => {
     const searchSuggestions = searchList(PokemonNames, searchInput);
     setSearchResultList(searchSuggestions);
   };
-
   const getSearchSuggestions = (searchInput) => {
-    setDestination("pokemon");
     const inputValue = searchInput.target.value;
     setTextInputValue(inputValue);
     if (!inputValue) {
@@ -54,7 +50,8 @@ export default function Homepage() {
     handleResultSuggestions(inputValue);
   };
   const sendSearchQuery = async (searchInput) => {
-    setDestination("pokemon");
+    let destination = "pokemon";
+    const baseUrl = `http://localhost:3001/api/${destination}/`;
     setTextInputValue("");
     try {
       const query = `${baseUrl}${searchInput}`;
@@ -65,9 +62,31 @@ export default function Homepage() {
       console.log(message);
     }
   };
+  const catchPokemon = async (pokemonData) => {
+    let destination = "collection/catch";
+    const baseUrl = `http://localhost:3001/api/${destination}/`;
+    try {
+      pokemonData.isCaught = true;
+      const query = `${baseUrl}`;
+      await network.post(query, JSON.stringify(pokemonData));
+      alert(`${pokemonData.name} added to your collection!`);
+      const currentCollection = await getUserCollection();
+      console.log(currentCollection);
+    } catch ({ message }) {
+      console.log(message);
+    }
+  };
+  const getUserCollection = async (user) => {
+    let destination = "collection/";
+    const baseUrl = `http://localhost:3001/api/${destination}/`;
+    const { data } = await network.get(baseUrl);
+    return data;
+  };
 
   const getTypeInfo = async (type) => {
-    setDestination("type");
+    let destination = "type";
+    const baseUrl = `http://localhost:3001/api/${destination}/`;
+
     try {
       const query = `${baseUrl}${type}`;
       console.log(query);
@@ -82,19 +101,7 @@ export default function Homepage() {
       console.log(message);
     }
   };
-  const catchPokemon = async (pokemonData) => {
-    setDestination("collection/catch");
-    console.log(pokemonData);
-    try {
-      // REQUEST FAILES :(((
-      const query = `${baseUrl}${pokemonData.name}`;
-      const body = pokemonData;
-      const req = await network.post(query, { data: body });
-      alert(`${pokemonData.name} added to your collection!`);
-    } catch ({ message }) {
-      console.log(message);
-    }
-  };
+
   return (
     <div>
       <section id="search-area">

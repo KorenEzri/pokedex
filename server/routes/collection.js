@@ -1,6 +1,14 @@
 const { Router } = require("express");
+const bodyParser = require("body-parser");
 const collection = Router();
 let collectionObjectArray = [];
+
+collection.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+collection.use(bodyParser.json());
 
 collection.get("/", (req, res) => {
   res.send(collectionObjectArray);
@@ -9,7 +17,7 @@ collection.get("/", (req, res) => {
 collection.post("/catch", async (req, res) => {
   try {
     const data = req.body;
-    const pokemonName = data.pokemonData.name;
+    const pokemonName = data.name;
     collectionObjectArray.push({ id: data.id, pokemonData: data });
     res.send(
       `Added ${pokemonName} to your collection! Your collection is: ${JSON.stringify(
@@ -34,4 +42,4 @@ collection.delete("/release/:id", async (req, res) => {
   }
 });
 
-module.exports = collection;
+module.exports = { collection, collectionObjectArray };

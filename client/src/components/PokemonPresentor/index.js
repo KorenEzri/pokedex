@@ -7,13 +7,13 @@ export default function PokemonPresentor({
   getTypeInfo,
   caught,
 }) {
-  const getPokemonTypes = (pokemonData) => {
-    const types = [];
-    pokemonData.types.forEach((type) => {
-      types.push(type.type.name);
-    });
-    return types;
-  };
+  // const getPokemonTypes = (pokemonData) => {
+  //   const types = [];
+  //   pokemonData.types.forEach((type) => {
+  //     types.push(type.type.name);
+  //   });
+  //   return types;
+  // };
   return (
     <div className="pokemon-wrapper">
       <div className="name">{pokemonData.name}</div>
@@ -28,7 +28,7 @@ export default function PokemonPresentor({
       />
       <div>height:{pokemonData.height}</div>
       <div>weight:{pokemonData.weight}</div>
-      <div>
+      {/* <div>
         types:
         {getPokemonTypes(pokemonData).map((type) => {
           return (
@@ -38,8 +38,18 @@ export default function PokemonPresentor({
             </span>
           );
         })}
-      </div>
-      <button onClick={() => catchPokemon(pokemonData)}>Catch!</button>
+      </div> */}
+      {console.log(pokemonData)}
+      {!pokemonData.isCaught && (
+        <button
+          onClick={(e) => {
+            catchPokemon(pokemonData);
+            e.target.innerText = "Caught!";
+          }}
+        >
+          Catch!
+        </button>
+      )}
     </div>
   );
 }
