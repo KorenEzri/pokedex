@@ -34,7 +34,6 @@ export default function Homepage() {
   const [searchResults, setSearchResultList] = useState([]);
   const [pokemonData, setPokemonData] = useState({});
   const [searched, setSearched] = useState(false);
-  const [caught, setCaught] = useState(false);
 
   const handleResultSuggestions = (searchInput) => {
     const searchSuggestions = searchList(PokemonNames, searchInput);
@@ -71,9 +70,18 @@ export default function Homepage() {
       if (data === "already caught!") {
         return alert(`${pokemonData.name} is ${data}`);
       }
-      alert(`${pokemonData.name} added to your collection!`);
-      const currentCollection = await getUserCollection();
-      console.log(currentCollection);
+      alert(`you caught ${pokemonData.name}!`);
+    } catch ({ message }) {
+      console.log(message);
+    }
+  };
+  const releasePokemon = async (pokemonData) => {
+    let destination = "collection/release";
+    const baseUrl = `http://localhost:3001/api/${destination}/`;
+    try {
+      const query = `${baseUrl}${pokemonData.id}`;
+      await network.delete(query);
+      alert(`${pokemonData.name} is released!`);
     } catch ({ message }) {
       console.log(message);
     }
@@ -123,9 +131,8 @@ export default function Homepage() {
         <section>
           <PokemonPresentor
             pokemonData={pokemonData}
-            catchPokemon={catchPokemon}
+            catchAndRelease={{ catch: catchPokemon, release: releasePokemon }}
             getTypeInfo={getTypeInfo}
-            caught={caught}
           />
         </section>
       )}

@@ -34,17 +34,14 @@ collection.post("/catch", async (req, res) => {
   }
 });
 
-// collection.delete("/release/:id", async (req, res) => {
-//   try {
-//     const pokemonID = req.params.id;
-//     const updatedCollectionArray = collectionObjectArray.filter(
-//       (pokemonObject) => pokemonObject.id !== Number(pokemonID)
-//     );
-//     collectionObjectArray = updatedCollectionArray;
-//     res.send(collectionObjectArray);
-//   } catch ({ message }) {
-//     console.log(message);
-//   }
-// });
+collection.delete("/release/:id", async (req, res) => {
+  try {
+    const pokemonID = req.params.id;
+    await Pokemon.deleteOne({ pokemonId: pokemonID });
+    res.send("deleted successfully");
+  } catch ({ message }) {
+    console.log(message);
+  }
+});
 
 module.exports = { collection };

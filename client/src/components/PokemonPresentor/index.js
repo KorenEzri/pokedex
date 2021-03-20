@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 
 export default function PokemonPresentor({
   pokemonData,
-  catchPokemon,
+  catchAndRelease,
   getTypeInfo,
-  caught,
 }) {
   // const getPokemonTypes = (pokemonData) => {
   //   const types = [];
@@ -41,11 +40,19 @@ export default function PokemonPresentor({
       </div> */}
       <button
         onClick={(e) => {
-          catchPokemon(pokemonData);
+          catchAndRelease.catch(pokemonData);
           e.target.innerText = "Caught!";
         }}
       >
         Catch!
+      </button>
+      <button
+        onClick={(e) => {
+          catchAndRelease.release(pokemonData);
+          e.target.innerText = "Released!";
+        }}
+      >
+        Release :)
       </button>
     </div>
   );
