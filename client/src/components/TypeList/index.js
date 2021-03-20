@@ -1,5 +1,6 @@
 import React from "react";
 import TypeListItem from "./TypeListItem/index";
+import "./TypeList.css";
 
 export default function TypeList({ pokeList, sendSearchQuery }) {
   return (
