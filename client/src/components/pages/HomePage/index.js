@@ -54,10 +54,6 @@ export default function Homepage() {
   const [typeList, setTypeList] = useState([]);
   const [userCollection, setUserCollection] = useState([]);
 
-  // useEffect(() => {
-  //   setSearchResultList("")
-  // })
-
   const handleResultSuggestions = (searchInput) => {
     const searchSuggestions = searchList(PokemonNames, searchInput);
     setSearchResultList(searchSuggestions);
@@ -153,6 +149,7 @@ export default function Homepage() {
           id="search-input"
           value={textInputValue}
           onChange={getSearchSuggestions}
+          autoComplete="off"
         />
         <SearchResultList
           searchResults={searchResults}
@@ -175,7 +172,10 @@ export default function Homepage() {
         </section>
       )}
       <section id="display-collection">
-        {/* <DisplayCollection userCollection={userCollection} /> */}
+        <DisplayCollection
+          userCollection={userCollection}
+          sendSearchQuery={sendSearchQuery}
+        />
       </section>
     </div>
   );

@@ -49,8 +49,9 @@ export default function PokemonPresentor({
       </div>
       {pokemonData.isCaught && (
         <button
-          onClick={(e) => {
-            catchAndRelease.release(pokemonData);
+          onClick={async (e) => {
+            await catchAndRelease.release(pokemonData);
+            await getUserCollection();
             e.target.hidden = true;
           }}
         >
@@ -59,8 +60,10 @@ export default function PokemonPresentor({
       )}
       {!pokemonData.isCaught && (
         <button
-          onClick={(e) => {
-            catchAndRelease.catch(pokemonData);
+          onClick={async (e) => {
+            await catchAndRelease.catch(pokemonData);
+            await getUserCollection();
+
             e.target.hidden = true;
           }}
         >

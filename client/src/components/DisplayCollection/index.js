@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ItemsCarousel from "react-items-carousel";
 import "./DisplayCollection.css";
 
-export default ({ userCollection }) => {
+export default ({ userCollection, sendSearchQuery }) => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
   console.log(userCollection);
@@ -11,19 +11,29 @@ export default ({ userCollection }) => {
       <ItemsCarousel
         requestToChangeActive={setActiveItemIndex}
         activeItemIndex={activeItemIndex}
-        numberOfCards={2}
+        numberOfCards={6}
         gutter={20}
         leftChevron={<button>{"<"}</button>}
         rightChevron={<button>{">"}</button>}
         outsideChevron
         chevronWidth={chevronWidth}
       >
-        <div>
-          {userCollection.map((item, user) => {
-            console.log(item);
-            return <div>{user.name}</div>;
-          })}
-        </div>
+        {userCollection.map((pokemon, index) => {
+          return (
+            <div
+              onClick={() => {
+                sendSearchQuery(pokemon.name);
+              }}
+              key={index}
+            >
+              <legend className="pokemon-collection-wrapper">
+                {pokemon.name}
+                <img src={pokemon.pictures.front} />
+              </legend>
+              <br></br>
+            </div>
+          );
+        })}
       </ItemsCarousel>
     </div>
   );
