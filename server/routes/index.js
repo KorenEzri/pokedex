@@ -5,11 +5,9 @@ const mongoose = require("mongoose");
 const { collection } = require("./collection");
 const url = require("../../mongoDBuri");
 const api = Router();
-
 api.use("/pokemon", pokemon);
 api.use("/type", type);
 api.use("/collection", collection);
-// api.use("/id", id)
 
 const connectMongo = async () => {
   console.log("Connecting to MongoDB");

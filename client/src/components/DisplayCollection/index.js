@@ -5,7 +5,6 @@ import "./DisplayCollection.css";
 export default ({ userCollection, sendSearchQuery }) => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
-  console.log(userCollection);
   return (
     <div style={{ padding: `0 ${chevronWidth}px` }}>
       <ItemsCarousel

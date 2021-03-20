@@ -27,7 +27,7 @@ pokemon.get("/:name", async (req, res) => {
     };
     res.send(responseObject);
   } catch ({ message }) {
-    console.log(message);
+    res.redirect("localhost:3000/404");
   }
 });
 

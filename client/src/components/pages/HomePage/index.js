@@ -23,11 +23,15 @@ import TypeList from "../../TypeList/index";
 // console.log(tempArray);
 
 const searchList = (list, input) => {
+  console.log(input);
   const firstLetterUppercase = (string) => {
     return string
       .toLowerCase()
       .split(" ")
       .map(function (word) {
+        if (!word) {
+          return;
+        }
         return word[0].toUpperCase() + word.substr(1);
       })
       .join(" ");
@@ -80,8 +84,8 @@ export default function Homepage() {
         (element) => element.name === searchInput.toLowerCase()
       );
       if (isPokemonCaught) {
-        isPokemonCaught.isCaught = true;
-        setPokemonData(isPokemonCaught);
+        data.isCaught = true;
+        setPokemonData(data);
       } else {
         setPokemonData(data);
       }
@@ -131,7 +135,7 @@ export default function Homepage() {
     }
   };
   const getUserCollection = async (user) => {
-    let destination = "collection/";
+    let destination = "collection";
     const baseUrl = `http://localhost:3001/api/${destination}/`;
     const { data } = await network.get(baseUrl);
     const userCollectionArray = data.map((pokemonItem) => {
@@ -140,7 +144,7 @@ export default function Homepage() {
     setUserCollection(userCollectionArray);
     return userCollectionArray;
   };
-
+  getUserCollection();
   return (
     <div>
       <section id="search-area">
