@@ -141,6 +141,7 @@ export default function Homepage() {
     return userCollectionArray;
   };
 
+  getUserCollection();
   return (
     <div>
       <section id="search-area">
