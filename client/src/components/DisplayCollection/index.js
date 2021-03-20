@@ -2,19 +2,6 @@ import React, { useState } from "react";
 import ItemsCarousel from "react-items-carousel";
 import "./DisplayCollection.css";
 
-// {getPokemonTypes(pokemonData).map((type) => {
-//   return (
-//     <span
-//       key={type}
-//       className="type-span"
-//       onClick={() => getTypeInfo(type)}
-//     >
-//       {" "}
-//       {type}
-//     </span>
-//   );
-// })}
-
 export default ({ userCollection }) => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;

@@ -54,6 +54,10 @@ export default function Homepage() {
   const [typeList, setTypeList] = useState([]);
   const [userCollection, setUserCollection] = useState([]);
 
+  // useEffect(() => {
+  //   setSearchResultList("")
+  // })
+
   const handleResultSuggestions = (searchInput) => {
     const searchSuggestions = searchList(PokemonNames, searchInput);
     setSearchResultList(searchSuggestions);
@@ -74,7 +78,16 @@ export default function Homepage() {
     try {
       const query = `${baseUrl}${searchInput}`;
       const { data } = await network.get(query);
-      setPokemonData(data);
+      const pokeCollection = await getUserCollection();
+      const isPokemonCaught = pokeCollection.find(
+        (element) => element.name === searchInput.toLowerCase()
+      );
+      if (isPokemonCaught) {
+        isPokemonCaught.isCaught = true;
+        setPokemonData(isPokemonCaught);
+      } else {
+        setPokemonData(data);
+      }
       setPokePresentation("true");
     } catch ({ message }) {
       console.log(message);
@@ -100,7 +113,7 @@ export default function Homepage() {
     try {
       const query = `${baseUrl}${pokemonData.id}`;
       await network.delete(query);
-      alert(`${pokemonData.name} is released!`);
+      alert(`${pokemonData.name} was released!`);
     } catch ({ message }) {
       console.log(message);
     }
@@ -128,21 +141,8 @@ export default function Homepage() {
       return pokemonItem.pokemonData;
     });
     setUserCollection(userCollectionArray);
-    // return data;
+    return userCollectionArray;
   };
-
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const {
-  //         data: { userCollection },
-  //       } = await network.get("http://localhost:3001/api/collection/");
-  //       setUserCollection(userCollection);
-  //     } catch ({ message }) {
-  //       console.log(message);
-  //     }
-  //   })();
-  // }, []);
 
   return (
     <div>
@@ -157,6 +157,7 @@ export default function Homepage() {
         <SearchResultList
           searchResults={searchResults}
           sendSearchQuery={sendSearchQuery}
+          setSearchResultList={setSearchResultList}
         />
       </section>
       {(presentingPokemon && (
