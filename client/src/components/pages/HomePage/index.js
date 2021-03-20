@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "./Homepage.css";
 import { useEffect, useState } from "react";
 import network from "../../../network/network";
 import PokemonPresentor from "../../PokemonPresentor/index";

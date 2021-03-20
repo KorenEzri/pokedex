@@ -1,1 +1,21 @@
-/* No CSS *//*# sourceMappingURL=TypeList.css.map */
+.pokemon-list-item {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border: solid 1px black;
+  margin-right: 1rem;
+  color: #ff5e00;
+  font-weight: 700;
+  border-radius: 0.5rem;
+}
+
+.pokemon-list-item::before {
+  content: "";
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  background: url("./pokeball.jpg") no-repeat 0 0;
+  background-size: 50px 50px;
+  margin: -10px;
+}
+/*# sourceMappingURL=TypeList.css.map */

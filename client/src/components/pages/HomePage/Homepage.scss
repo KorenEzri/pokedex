@@ -1,0 +1,14 @@
+#root {
+  background-image: url("./background.jpg");
+  min-height: 100vh;
+  place-items: center;
+}
+#search-input {
+  background-color: transparent;
+  color: rgba(255, 255, 0, 0.863);
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}

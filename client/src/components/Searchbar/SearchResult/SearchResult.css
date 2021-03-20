@@ -11,5 +11,17 @@
 .search-result {
   cursor: pointer;
   width: 30%;
+  color: rgba(255, 136, 0, 0.863);
+  font-size: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: 700;
 }
 /*# sourceMappingURL=SearchResult.css.map */

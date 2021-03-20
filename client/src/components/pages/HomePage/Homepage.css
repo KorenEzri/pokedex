@@ -1,1 +1,22 @@
-/* No CSS *//*# sourceMappingURL=Homepage.css.map */
+#root {
+  background-image: url("./background.jpg");
+  min-height: 100vh;
+  place-items: center;
+}
+
+#search-input {
+  background-color: transparent;
+  color: rgba(255, 255, 0, 0.863);
+  font-size: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: 700;
+}
+/*# sourceMappingURL=Homepage.css.map */
