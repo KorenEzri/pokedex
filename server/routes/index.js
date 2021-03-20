@@ -3,7 +3,7 @@ const pokemon = require("./pokemon");
 const type = require("./type");
 const mongoose = require("mongoose");
 const { collection } = require("./collection");
-const url = require("../mongoDBuri");
+const url = require("../../mongoDBuri");
 const api = Router();
 
 api.use("/pokemon", pokemon);

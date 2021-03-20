@@ -26,7 +26,6 @@ export default PokemonNames = [
   "Pikachu",
   "Raichu",
   "Sandshrew",
-  "Sandslash",
   "Nidoran♀",
   "Nidorina",
   "Nidoqueen",

@@ -5,6 +5,7 @@ import PokemonPresentor from "../../PokemonPresentor/index";
 import DisplayCollection from "../../DisplayCollection/index";
 import SearchResultList from "../../Searchbar/SearchResultList";
 import PokemonNames from "../../Searchbar/pokemonNames";
+import TypeList from "../../TypeList/index";
 
 const searchList = (list, input) => {
   const firstLetterUppercase = (string) => {
@@ -34,7 +35,8 @@ export default function Homepage() {
   const [textInputValue, setTextInputValue] = useState("");
   const [searchResults, setSearchResultList] = useState([]);
   const [pokemonData, setPokemonData] = useState({});
-  const [searched, setSearched] = useState(false);
+  const [presentingPokemon, setPokePresentation] = useState(false);
+  const [typeList, setTypeList] = useState([]);
 
   const handleResultSuggestions = (searchInput) => {
     const searchSuggestions = searchList(PokemonNames, searchInput);
@@ -57,7 +59,7 @@ export default function Homepage() {
       const query = `${baseUrl}${searchInput}`;
       const { data } = await network.get(query);
       setPokemonData(data);
-      setSearched("true");
+      setPokePresentation("true");
     } catch ({ message }) {
       console.log(message);
     }
@@ -87,30 +89,26 @@ export default function Homepage() {
       console.log(message);
     }
   };
+  const getTypeInfo = async (type) => {
+    let destination = "type";
+    const baseUrl = `http://localhost:3001/api/${destination}/`;
+    setPokePresentation(false);
+    try {
+      const query = `${baseUrl}${type}`;
+      const { data } = await network.get(query);
+      const pokemonByType = data.pokemon.map((pokemon) => {
+        return pokemon.pokemon.name;
+      });
+      setTypeList(pokemonByType);
+    } catch ({ message }) {
+      console.log(message);
+    }
+  };
   const getUserCollection = async (user) => {
     let destination = "collection/";
     const baseUrl = `http://localhost:3001/api/${destination}/`;
     const { data } = await network.get(baseUrl);
     return data;
-  };
-
-  const getTypeInfo = async (type) => {
-    let destination = "type";
-    const baseUrl = `http://localhost:3001/api/${destination}/`;
-
-    try {
-      const query = `${baseUrl}${type}`;
-      console.log(query);
-      const { data } = await network.get(query);
-      console.log(data.pokemon);
-      const pokemons = data.pokemon.map((pokemon) => {
-        /*this list should be rendered and presented on the page,
-         and every pokemon should have an onClick function that present it with PokemonPresentor  */
-        console.log(pokemon.pokemon.name);
-      });
-    } catch ({ message }) {
-      console.log(message);
-    }
   };
 
   return (
@@ -128,13 +126,17 @@ export default function Homepage() {
           sendSearchQuery={sendSearchQuery}
         />
       </section>
-      {searched && (
+      {(presentingPokemon && (
         <section className="pokemon-presentor">
           <PokemonPresentor
             pokemonData={pokemonData}
             catchAndRelease={{ catch: catchPokemon, release: releasePokemon }}
             getTypeInfo={getTypeInfo}
           />
+        </section>
+      )) || (
+        <section id="type-list">
+          <TypeList pokeList={typeList} sendSearchQuery={sendSearchQuery} />
         </section>
       )}
       <section id="display-collection">
