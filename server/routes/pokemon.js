@@ -14,6 +14,9 @@ pokemon.get("/:name", async (req, res) => {
       `${pokeAPI_ROUTES.allData}pokemon/${pokemonName}`
     );
     const { name, height, weight, types, sprites, id } = data;
+    if (!types.length) {
+      types = [{ type: "No type!" }];
+    }
     const responseObject = {
       name,
       height,
@@ -37,12 +40,12 @@ pokemon.get("/:id", async (req, res) => {
     const { data } = await network.get(
       `${pokeAPI_ROUTES.allData}pokemon/${pokemonID}`
     );
-    const { name, height, weight, type, sprites, id } = data;
+    const { name, height, weight, types, sprites, id } = data;
     const responseObject = {
       name,
       height,
       weight,
-      type,
+      types,
       id,
       pictures: {
         front: sprites.front_default,
