@@ -7,20 +7,15 @@ export default function PokemonPresentor({
   catchAndRelease,
   getUserCollection,
 }) {
-  const [isCaught, setIsCaught] = useState(false);
   const getPokemonTypes = (pokemonData) => {
     const types = [];
-    // if (!pokemonData.types){
-    //   types.push({})
-    // } console.log(pokemonData);
-    // types.push("No type!");
-    // pokemonData.types.forEach((type) => {
-    //   types.push(type.type.name);
-    // });
-    // for (let type of pokemonData.types) {
-    //   types.push(type.type.name);
-    // }
-
+    if (!pokemonData.types) {
+      types.push("No type!");
+    } else {
+      pokemonData.types.forEach((type) => {
+        types.push(type.type.name);
+      });
+    }
     return types;
   };
   return (
@@ -52,23 +47,24 @@ export default function PokemonPresentor({
           );
         })}
       </div>
-      {isCaught && (
+      {pokemonData.isCaught && (
         <button
           onClick={async (e) => {
             await catchAndRelease.release(pokemonData);
             await getUserCollection();
-            setIsCaught(false);
+            e.target.hidden = true;
           }}
         >
           Release!
         </button>
       )}
-      {!isCaught && (
+      {!pokemonData.isCaught && (
         <button
           onClick={async (e) => {
             await catchAndRelease.catch(pokemonData);
             await getUserCollection();
-            setIsCaught(true);
+
+            e.target.hidden = true;
           }}
         >
           Catch!
