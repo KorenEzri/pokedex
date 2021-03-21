@@ -9,6 +9,7 @@
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "concurrently": "^6.0.0",
+    "dotenv": "^8.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-items-carousel": "^2.8.0",

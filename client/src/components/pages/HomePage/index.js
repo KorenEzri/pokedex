@@ -8,22 +8,11 @@ import DisplayCollection from "../../DisplayCollection/index";
 import SearchResultList from "../../Searchbar/SearchResultList";
 import PokemonNames from "../../Searchbar/pokemonNames";
 import TypeList from "../../TypeList/index";
-// const tempArray = [];
-// const getAllPics = async () => {
-//   for (let pokemon of PokemonNames) {
-//     let pName = pokemon.toLowerCase();
-//     const { data } = await network.get(
-//       `http://localhost:3001/api/pokemon/${pName}`
-//     );
-//     tempArray.push(data.pictures.front);
-//   }
-//   console.log(tempArray);
-// };
-// getAllPics();
-// console.log(tempArray);
+require("dotenv").config();
 
+const baseUrl = process.env.PORT || `/api`;
+console.log(baseUrl, process.env.PORT);
 const searchList = (list, input) => {
-  console.log(input);
   const firstLetterUppercase = (string) => {
     return string
       .toLowerCase()
@@ -74,10 +63,10 @@ export default function Homepage() {
   };
   const sendSearchQuery = async (searchInput) => {
     let destination = "pokemon";
-    const baseUrl = `http://localhost:3001/api/${destination}/`;
+    const URL = `${baseUrl}/${destination}/`;
     setTextInputValue("");
     try {
-      const query = `${baseUrl}${searchInput}`;
+      const query = `${URL}${searchInput}`;
       const { data } = await network.get(query);
       const pokeCollection = await getUserCollection();
       const isPokemonCaught = pokeCollection.find(
@@ -96,9 +85,9 @@ export default function Homepage() {
   };
   const catchPokemon = async (pokemonData) => {
     let destination = "collection/catch";
-    const baseUrl = `http://localhost:3001/api/${destination}/`;
+    const URL = `${baseUrl}/${destination}/`;
     try {
-      const query = `${baseUrl}`;
+      const query = `${URL}`;
       const { data } = await network.post(query, pokemonData);
       if (data === "already caught!") {
         return alert(`${pokemonData.name} is ${data}`);
@@ -110,9 +99,9 @@ export default function Homepage() {
   };
   const releasePokemon = async (pokemonData) => {
     let destination = "collection/release";
-    const baseUrl = `http://localhost:3001/api/${destination}/`;
+    const URL = `${baseUrl}/${destination}/`;
     try {
-      const query = `${baseUrl}${pokemonData.id}`;
+      const query = `${URL}${pokemonData.id}`;
       await network.delete(query);
       alert(`${pokemonData.name} was released!`);
     } catch ({ message }) {
@@ -121,10 +110,10 @@ export default function Homepage() {
   };
   const getTypeInfo = async (type) => {
     let destination = "type";
-    const baseUrl = `http://localhost:3001/api/${destination}/`;
+    const URL = `${baseUrl}/${destination}/`;
     setPokePresentation(false);
     try {
-      const query = `${baseUrl}${type}`;
+      const query = `${URL}${type}`;
       const { data } = await network.get(query);
       const pokemonByType = data.pokemon.map((pokemon) => {
         return pokemon.pokemon.name;
@@ -136,8 +125,8 @@ export default function Homepage() {
   };
   const getUserCollection = async (user) => {
     let destination = "collection";
-    const baseUrl = `http://localhost:3001/api/${destination}/`;
-    const { data } = await network.get(baseUrl);
+    const URL = `${baseUrl}/${destination}/`;
+    const { data } = await network.get(URL);
     console.log(data);
     const userCollectionArray = data.map((pokemonItem) => {
       return pokemonItem.pokemonData;
