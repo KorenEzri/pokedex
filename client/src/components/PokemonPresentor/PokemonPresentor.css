@@ -3,16 +3,34 @@
 }
 
 .pokemon-wrapper {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   display: block;
   width: 30vw;
-  margin: 0 30vw;
+  margin-left: auto;
+  margin-right: auto;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 1.5rem;
-  border: black solid 3px;
+  border: black solid 2px;
   border-radius: 5rem;
 }
 
 #name {
-  font-size: 3rem !important;
+  font-size: 2.5rem !important;
+}
+
+#poke-image {
+  width: 150px;
+  margin: -10px;
+}
+
+.pokemon-wrapper * {
+  margin: 10px;
+}
+
+.pokemon-wrapper:focus {
+  outline: none;
 }
 /*# sourceMappingURL=PokemonPresentor.css.map */

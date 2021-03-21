@@ -18,5 +18,7 @@ type.get("/:typeName", async (req, res) => {
     console.log(message);
   }
 });
-
+type.get("*", function (req, res) {
+  res.status(404).redirect("/404");
+});
 module.exports = type;

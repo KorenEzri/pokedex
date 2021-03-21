@@ -1,3 +1,14 @@
 .search-list {
+  transition: 500ms;
   list-style-type: none;
+  background-color: rgb(245, 222, 179);
+  z-index: 9001;
+  margin-left: -20px;
+  width: 140%;
+  border-radius: 12px;
+}
+
+.search-list:hover {
+  transition: 500ms;
+  width: 140%;
 }

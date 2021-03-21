@@ -1,16 +1,25 @@
 .pokemon-collection-wrapper {
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   border: solid black 3px;
   display: block;
   border-radius: 0.5rem;
   height: 120px;
+  cursor: pointer;
+  margin: 16px;
+  background-color: rgba(245, 222, 179, 0.63);
 }
 
-.collection-div {
-  min-height: 100vh;
+* {
+  -webkit-transition: 1ms;
+  transition: 1ms;
 }
 
 .collection-header {
-  font-size: 3rem;
+  font-size: 2.6rem;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   color: #2e1547;
 }
@@ -19,5 +28,11 @@
   margin: 0;
   padding: 0;
   font-size: 1.5rem;
+}
+
+.carbtn {
+  width: 2px !important;
+  margin: 6px !important;
+  font-weight: bold;
 }
 /*# sourceMappingURL=DisplayCollection.css.map */

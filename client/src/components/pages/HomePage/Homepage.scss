@@ -1,20 +1,33 @@
 #root {
   background-image: url("./background.jpg");
+  background-size: auto;
   min-height: 100vh;
   text-align: center;
 }
+
+* {
+  transition: 500ms;
+}
+
 .wrapper {
-  min-height: 100vh;
+  overflow-x: hidden;
+  max-height: 100vh;
 }
 
 #search-input {
   background-color: transparent;
   color: rgba(255, 255, 0, 0.863);
+  width: 300px;
   font-size: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 700;
+  margin: 22px;
+  padding: 6px;
+  margin-bottom: -2px;
+
+  transition: 500ms;
 }
 
 button {
@@ -39,4 +52,8 @@ button:hover {
 button:active {
   position: relative;
   top: 1px;
+}
+
+.result-container {
+  position: absolute;
 }

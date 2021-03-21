@@ -1,4 +1,17 @@
 .search-list {
+  -webkit-transition: 500ms;
+  transition: 500ms;
   list-style-type: none;
+  background-color: wheat;
+  z-index: 9001;
+  margin-left: -20px;
+  width: 140%;
+  border-radius: 12px;
+}
+
+.search-list:hover {
+  -webkit-transition: 500ms;
+  transition: 500ms;
+  width: 140%;
 }
 /*# sourceMappingURL=SearchResultList.css.map */

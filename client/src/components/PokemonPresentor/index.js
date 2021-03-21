@@ -1,6 +1,4 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import CatchReleaseButton from "./CatchReleaseButton/index";
 import "./PokemonPresentor.css";
 export default function PokemonPresentor({
   pokemonData,
@@ -23,6 +21,7 @@ export default function PokemonPresentor({
     <div className="pokemon-wrapper">
       <div id="name">{pokemonData.name}</div>
       <img
+        id="poke-image"
         onMouseOver={(e) => {
           e.target.src = `${pokemonData.pictures.back}`;
         }}
@@ -31,10 +30,10 @@ export default function PokemonPresentor({
         }}
         src={pokemonData.pictures.front}
       />
-      <div className="height-div">height:{pokemonData.height}</div>
-      <div className="width-div">weight:{pokemonData.weight}</div>
+      <div className="height-div">Height: {pokemonData.height}</div>
+      <div className="width-div">Weight: {pokemonData.weight}</div>
       <div>
-        types:
+        Pokemon Types:
         {getPokemonTypes(pokemonData).map((type) => {
           return (
             <span
@@ -64,7 +63,6 @@ export default function PokemonPresentor({
           onClick={async (e) => {
             await catchAndRelease.catch(pokemonData);
             await getUserCollection();
-
             e.target.hidden = true;
           }}
         >

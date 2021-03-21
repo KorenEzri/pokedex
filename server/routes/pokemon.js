@@ -54,5 +54,8 @@ pokemon.get("/:id", async (req, res) => {
     console.log(message);
   }
 });
+pokemon.get("*", function (req, res) {
+  res.status(404).redirect("/404");
+});
 
 module.exports = pokemon;

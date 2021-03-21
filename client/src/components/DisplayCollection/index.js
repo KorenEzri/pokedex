@@ -13,8 +13,8 @@ export default DisplayCollection = ({ userCollection, sendSearchQuery }) => {
         activeItemIndex={activeItemIndex}
         numberOfCards={6}
         gutter={20}
-        leftChevron={<button>{"<"}</button>}
-        rightChevron={<button>{">"}</button>}
+        leftChevron={<button className="carbtn">{"<"}</button>}
+        rightChevron={<button className="carbtn">{">"}</button>}
         outsideChevron
         chevronWidth={chevronWidth}
       >

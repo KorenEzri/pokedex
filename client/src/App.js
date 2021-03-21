@@ -1,15 +1,11 @@
 import "./App.css";
-import logo from "./logo.svg";
-import Footer from "./components/Footer/index";
 import HomePage from "./components/pages/HomePage/index";
-import Header from "./components/Header/index";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NotFound from "./components/NotFound/index";
 
 function App() {
   return (
     <div className="wrapper">
-      <Header />
       <div className="main">
         <Router>
           <Switch>
@@ -21,7 +17,6 @@ function App() {
             </Route>
           </Switch>
         </Router>
-        <Footer />
       </div>
     </div>
   );

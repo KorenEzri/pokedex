@@ -44,4 +44,8 @@ collection.delete("/release/:id", async (req, res) => {
   }
 });
 
+collection.get("*", function (req, res) {
+  res.status(404).redirect("/404");
+});
+
 module.exports = { collection };

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import "./Homepage.css";
 import { useEffect, useState } from "react";
@@ -8,10 +8,8 @@ import DisplayCollection from "../../DisplayCollection/index";
 import SearchResultList from "../../Searchbar/SearchResultList";
 import PokemonNames from "../../Searchbar/pokemonNames";
 import TypeList from "../../TypeList/index";
-require("dotenv").config();
-// http://localhost:3001
-const baseUrl = process.env.PORT || `/api`;
-console.log(baseUrl, process.env.PORT);
+
+const baseUrl = process.env.PORT || `http://localhost:3001/api`;
 const searchList = (list, input) => {
   const firstLetterUppercase = (string) => {
     return string
@@ -134,15 +132,18 @@ export default function Homepage() {
     setUserCollection(userCollectionArray);
     return userCollectionArray;
   };
+
   useEffect(() => {
     (async () => {
       try {
         getUserCollection();
+        sendSearchQuery(PokemonNames[Math.floor(Math.random() * 10)]);
       } catch ({ message }) {
         console.log(message);
       }
     })();
   }, []);
+
   return (
     <div>
       <section id="search-area">
@@ -154,11 +155,13 @@ export default function Homepage() {
           onChange={getSearchSuggestions}
           autoComplete="off"
         />
-        <SearchResultList
-          searchResults={searchResults}
-          sendSearchQuery={sendSearchQuery}
-          setSearchResultList={setSearchResultList}
-        />
+        <div className="result-container">
+          <SearchResultList
+            searchResults={searchResults}
+            sendSearchQuery={sendSearchQuery}
+            setSearchResultList={setSearchResultList}
+          />
+        </div>
       </section>
       {(presentingPokemon && (
         <section className="pokemon-presentor">
