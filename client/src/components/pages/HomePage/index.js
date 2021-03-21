@@ -9,7 +9,7 @@ import SearchResultList from "../../Searchbar/SearchResultList";
 import PokemonNames from "../../Searchbar/pokemonNames";
 import TypeList from "../../TypeList/index";
 require("dotenv").config();
-
+// http://localhost:3001
 const baseUrl = process.env.PORT || `/api`;
 console.log(baseUrl, process.env.PORT);
 const searchList = (list, input) => {
