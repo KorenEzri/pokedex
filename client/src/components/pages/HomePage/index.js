@@ -7,6 +7,7 @@ import PokemonPresentor from "../../PokemonPresentor/index";
 import DisplayCollection from "../../DisplayCollection/index";
 import SearchResultList from "../../Searchbar/SearchResultList";
 import PokemonNames from "../../Searchbar/pokemonNames";
+import pokemonNamesWithPics from "../../Searchbar/pokemonNamesWithPics";
 import TypeList from "../../TypeList/index";
 
 const baseUrl = process.env.PORT || `http://localhost:3001/api`;
@@ -27,10 +28,11 @@ const searchList = (list, input) => {
     let filter = firstLetterUppercase(input);
     const searchResults = [];
     let count = 0;
-    list.forEach((pokemonName) => {
+    list.forEach((pokemon) => {
+      let pokemonName = pokemon.pokeName;
       const result = pokemonName.substring(0, input.length);
       if (result === filter && count < 6) {
-        searchResults.push(pokemonName);
+        searchResults.push(pokemon);
         count++;
       }
     });
@@ -46,8 +48,8 @@ export default function Homepage() {
   const [typeList, setTypeList] = useState([]);
   const [userCollection, setUserCollection] = useState([]);
 
-  const handleResultSuggestions = (searchInput) => {
-    const searchSuggestions = searchList(PokemonNames, searchInput);
+  const handleResultSuggestions = async (searchInput) => {
+    const searchSuggestions = searchList(pokemonNamesWithPics, searchInput);
     setSearchResultList(searchSuggestions);
   };
   const getSearchSuggestions = (searchInput) => {
@@ -113,10 +115,18 @@ export default function Homepage() {
     try {
       const query = `${URL}${type}`;
       const { data } = await network.get(query);
-      const pokemonByType = data.pokemon.map((pokemon) => {
+      const relevantTypeArray = [];
+      const typePokeNames = data.pokemon.map((pokemon) => {
         return pokemon.pokemon.name;
       });
-      setTypeList(pokemonByType);
+      typePokeNames.forEach((typePokemon) => {
+        pokemonNamesWithPics.forEach((pokemon) => {
+          if (pokemon.pokeName.toLowerCase() === typePokemon) {
+            relevantTypeArray.push(pokemon);
+          }
+        });
+      });
+      setTypeList(relevantTypeArray);
     } catch ({ message }) {
       console.log(message);
     }
@@ -125,13 +135,18 @@ export default function Homepage() {
     let destination = "collection";
     const URL = `${baseUrl}/${destination}/`;
     const { data } = await network.get(URL);
-    console.log(data);
     const userCollectionArray = data.map((pokemonItem) => {
       return pokemonItem.pokemonData;
     });
     setUserCollection(userCollectionArray);
     return userCollectionArray;
   };
+  // const getPokemonPicsOnly = async (allPictures, suggestionNames) => {
+  //     const pictureArray = []
+  //     allPictures.forEach((pokemon)=>{
+  //       if (pokemon.pokeName === )
+  //     })
+  // };
 
   useEffect(() => {
     (async () => {

@@ -18,7 +18,7 @@
 #search-input {
   background-color: transparent;
   color: rgba(255, 255, 0, 0.863);
-  width: 300px;
+  width: 313px;
   font-size: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -30,9 +30,9 @@
       -ms-flex-align: center;
           align-items: center;
   font-weight: 700;
-  margin: 22px;
+  margin-top: 10px;
   padding: 6px;
-  margin-bottom: -2px;
+  margin-bottom: -16px;
   -webkit-transition: 500ms;
   transition: 500ms;
 }

@@ -9,7 +9,8 @@ export default function TypeList({ pokeList, sendSearchQuery }) {
       {pokeList.map((pokemon, index) => {
         return (
           <TypeListItem
-            pokemon={pokemon}
+            pokemon={pokemon.pokeName}
+            picture={pokemon.pictures}
             key={index}
             sendSearchQuery={sendSearchQuery}
           />

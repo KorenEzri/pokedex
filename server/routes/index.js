@@ -24,7 +24,7 @@ const connectMongo = async () => {
     console.log(message);
   }
 };
-apu.get("*", function (req, res) {
+api.get("*", function (req, res) {
   res.status(404).redirect("/404");
 });
 connectMongo();

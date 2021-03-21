@@ -6,17 +6,22 @@ export default function SearchResult({
   value,
   sendSearchQuery,
   setSearchResultList,
+  picture,
 }) {
+  console.log(picture);
   return (
-    <li
-      key={index}
-      className="search-result"
-      onClick={() => {
-        sendSearchQuery(value);
-        setSearchResultList("");
-      }}
-    >
-      {value}
-    </li>
+    <div>
+      <img className="pokePic" src={picture} />
+      <li
+        key={index}
+        className="search-result"
+        onClick={() => {
+          sendSearchQuery(value);
+          setSearchResultList("");
+        }}
+      >
+        {value}
+      </li>
+    </div>
   );
 }

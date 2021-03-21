@@ -15,7 +15,8 @@ export default function SearchResultList({
         return (
           <SearchResult
             key={index}
-            value={result}
+            value={result.pokeName}
+            picture={result.pictures}
             sendSearchQuery={sendSearchQuery}
             setSearchResultList={setSearchResultList}
           />

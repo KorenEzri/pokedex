@@ -9,11 +9,12 @@
 
 .search-result {
   transition: 600ms;
-  margin-left: -22px;
+  width: 152px;
+  margin-top: 6px;
   position: relative;
   cursor: pointer;
   color: rgba(255, 136, 0, 0.863);
-  font-size: 2rem;
+  font-size: 1.5rem;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -26,4 +27,11 @@
   margin-left: -16px;
   border-radius: 12px;
   padding: 12px;
+}
+
+.pokePic {
+  width: 80px;
+  margin: -16px;
+  float: left;
+  display: inline-block;
 }
