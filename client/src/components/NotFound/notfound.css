@@ -1,1 +1,19 @@
-/* No CSS */ /*# sourceMappingURL=notfound.css.map */
+.404 {
+  background-image: url("./notfound.jpg");
+}
+
+.header {
+  color: red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 4rem;
+}
+
+.link {
+  color: red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/*# sourceMappingURL=notfound.css.map */

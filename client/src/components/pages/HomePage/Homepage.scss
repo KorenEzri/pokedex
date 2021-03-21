@@ -1,7 +1,12 @@
 #root {
   background-image: url("./background.jpg");
   min-height: 100vh;
-  place-items: center;
+  text-align: center;
+}
+.wrapper {
+  min-height: 100vh;
+}
+.collection-header {
 }
 #search-input {
   background-color: transparent;

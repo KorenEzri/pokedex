@@ -21,7 +21,7 @@ export default function PokemonPresentor({
   };
   return (
     <div className="pokemon-wrapper">
-      <div className="name">{pokemonData.name}</div>
+      <div id="name">{pokemonData.name}</div>
       <img
         onMouseOver={(e) => {
           e.target.src = `${pokemonData.pictures.back}`;

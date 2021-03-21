@@ -1,3 +1,19 @@
 .pokemon-collection-wrapper {
-  border: solid black 1px;
+  border: solid black 3px;
+  display: block;
+  border-radius: 0.5rem;
+  height: 120px;
+}
+.collection-div {
+  min-height: 100vh;
+}
+.collection-header {
+  font-size: 3rem;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: rgb(46, 21, 71);
+}
+.name {
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
 }

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import ItemsCarousel from "react-items-carousel";
 import "./DisplayCollection.css";
-
-export default ({ userCollection, sendSearchQuery }) => {
+let DisplayCollection;
+export default DisplayCollection = ({ userCollection, sendSearchQuery }) => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
   return (
-    <div style={{ padding: `0 ${chevronWidth}px` }}>
+    <div className="collection-div" style={{ padding: `0 ${chevronWidth}px` }}>
+      <h1 className="collection-header">collection</h1>
       <ItemsCarousel
         requestToChangeActive={setActiveItemIndex}
         activeItemIndex={activeItemIndex}
@@ -24,10 +25,11 @@ export default ({ userCollection, sendSearchQuery }) => {
                 sendSearchQuery(pokemon.name);
               }}
               key={index}
+              className="kaki"
             >
               <legend className="pokemon-collection-wrapper">
-                {pokemon.name}
-                <img src={pokemon.pictures.front} />
+                <p className="name">{pokemon.name}</p>
+                <img alt={pokemon.name} src={pokemon.pictures.front} />
               </legend>
               <br></br>
             </div>
