@@ -8,10 +8,11 @@ export default function CatchReleaseButton({
   return (
     <button
       onClick={async (e) => {
-        await catchAndRelease.catch(pokemonData);
-        pokemonData.isCaught
-          ? await catchAndRelease.release(pokemonData)
-          : await getUserCollection();
+        !pokemonData.isCaught
+          ? await catchAndRelease.catch(pokemonData)
+          : await catchAndRelease.release(pokemonData);
+
+        await getUserCollection();
       }}
     >
       {pokemonData.isCaught ? "Release!" : "Catch"}
