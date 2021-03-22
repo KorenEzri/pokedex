@@ -7,6 +7,8 @@ export default function PokemonPresentor({
   getTypeInfo,
   catchAndRelease,
   getUserCollection,
+  PokemonNames,
+  sendSearchQuery,
 }) {
   const getPokemonTypes = (pokemonData) => {
     const types = [];
@@ -22,16 +24,20 @@ export default function PokemonPresentor({
   return (
     <div className="pokemon-wrapper">
       <div id="name">{pokemonData.name}</div>
-      <img
-        id="poke-image"
-        onMouseOver={(e) => {
-          e.target.src = `${pokemonData.pictures.back}`;
-        }}
-        onMouseOut={(e) => {
-          e.target.src = `${pokemonData.pictures.front}`;
-        }}
-        src={pokemonData.pictures.front}
-      />
+      {pokemonData.pictures ? (
+        <img
+          id="poke-image"
+          onMouseOver={(e) => {
+            e.target.src = `${pokemonData.pictures.back}`;
+          }}
+          onMouseOut={(e) => {
+            e.target.src = `${pokemonData.pictures.front}`;
+          }}
+          src={pokemonData.pictures.front}
+        />
+      ) : (
+        <p>This poke is very rare, and hence has yet to've been documented</p>
+      )}
       <div className="height-div">Height: {pokemonData.height}</div>
       <div className="width-div">Weight: {pokemonData.weight}</div>
       <div>
@@ -53,6 +59,8 @@ export default function PokemonPresentor({
         pokemonData={pokemonData}
         catchAndRelease={catchAndRelease}
         getUserCollection={getUserCollection}
+        PokemonNames={PokemonNames}
+        sendSearchQuery={sendSearchQuery}
       />
     </div>
   );

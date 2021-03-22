@@ -4,6 +4,8 @@ export default function CatchReleaseButton({
   catchAndRelease,
   pokemonData,
   getUserCollection,
+  sendSearchQuery,
+  PokemonNames,
 }) {
   return (
     <button
@@ -11,8 +13,8 @@ export default function CatchReleaseButton({
         !pokemonData.isCaught
           ? await catchAndRelease.catch(pokemonData)
           : await catchAndRelease.release(pokemonData);
-
         await getUserCollection();
+        await sendSearchQuery(PokemonNames[Math.floor(Math.random() * 700)]);
       }}
     >
       {pokemonData.isCaught ? "Release!" : "Catch"}

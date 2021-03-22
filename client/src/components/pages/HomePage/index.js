@@ -147,16 +147,19 @@ export default function Homepage() {
     (async () => {
       try {
         getUserCollection();
-        sendSearchQuery(PokemonNames[Math.floor(Math.random() * 10)]);
+        sendSearchQuery(PokemonNames[Math.floor(Math.random() * 786)]);
       } catch ({ message }) {
         console.log(message);
       }
     })();
   }, []);
 
-  // useEffect(() => {
-
-  // }, [CatchReleaseButton]);
+  useEffect(() => {
+    return () => {
+      pokemonData.isCaught = !pokemonData.isCaught;
+      setPokemonData(pokemonData);
+    };
+  }, [CatchReleaseButton]);
 
   return (
     <div>
@@ -184,6 +187,8 @@ export default function Homepage() {
             catchAndRelease={{ catch: catchPokemon, release: releasePokemon }}
             getTypeInfo={getTypeInfo}
             getUserCollection={getUserCollection}
+            PokemonNames={PokemonNames}
+            sendSearchQuery={sendSearchQuery}
           />
         </section>
       )) || (
