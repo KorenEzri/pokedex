@@ -1,9 +1,13 @@
 #pokemon-type-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr;
+      grid-template-columns: 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr;
+  -ms-grid-rows: 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr;
+      grid-template-rows: 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr 0.01fr;
+  gap: 12px 14px;
+  margin-top: 36px;
+      grid-template-areas: ". . . . . . . ." ". . . . . . . ." ". . . . . . . ." ". . . . . . . ." ". . . . . . . ." ". . . . . . . ." ". . . . . . . ." ". . . . . . . ." ". . . . . . . .";
 }
 
 .pokemon-list-item {
@@ -16,6 +20,7 @@
   color: #ff5e00;
   font-weight: 700;
   border-radius: 0.5rem;
+  padding: 6px;
 }
 
 .pokemon-list-item::before {

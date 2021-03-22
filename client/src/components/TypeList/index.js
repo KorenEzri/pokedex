@@ -4,7 +4,7 @@ import "./TypeList.css";
 
 export default function TypeList({ pokeList, sendSearchQuery }) {
   return (
-    <ul id="pokemon-type-list">
+    <div id="pokemon-type-list">
       {" "}
       {pokeList.map((pokemon, index) => {
         return (
@@ -16,6 +16,6 @@ export default function TypeList({ pokeList, sendSearchQuery }) {
           />
         );
       })}
-    </ul>
+    </div>
   );
 }

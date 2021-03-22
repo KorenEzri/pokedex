@@ -10,6 +10,7 @@ import PokemonNames from "../../Searchbar/pokemonNames";
 import pokemonNamesWithPics from "../../Searchbar/pokemonNamesWithPics";
 import TypeList from "../../TypeList/index";
 import CatchReleaseButton from "../../PokemonPresentor/CatchReleaseButton/index";
+import Swal from "sweetalert2";
 
 const baseUrl = process.env.PORT || `http://localhost:3001/api`;
 const searchList = (list, input) => {
@@ -93,7 +94,17 @@ export default function Homepage() {
       if (data === "already caught!") {
         return alert(`${pokemonData.name} is ${data}`);
       }
-      alert(`you caught ${pokemonData.name}!`);
+      Swal.fire({
+        title: `You caught ${pokemonData.name}!`,
+        width: 600,
+        padding: "3em",
+        background: "darkpurple",
+        backdrop: `
+        rgba(0,0,123,0.4)
+        url(caught.gif)
+        no-repeat
+      `,
+      });
     } catch ({ message }) {
       console.log(message);
     }
@@ -104,7 +115,17 @@ export default function Homepage() {
     try {
       const query = `${URL}${pokemonData.id}`;
       await network.delete(query);
-      alert(`${pokemonData.name} was released!`);
+      Swal.fire({
+        title: `${pokemonData.name} was released!`,
+        width: 600,
+        padding: "3em",
+        background: "darkpurple",
+        backdrop: `
+        rgba(0,0,123,0.4)
+        url(caught.gif)
+        no-repeat
+      `,
+      });
     } catch ({ message }) {
       console.log(message);
     }
