@@ -9,7 +9,6 @@ import SearchResultList from "../../Searchbar/SearchResultList";
 import PokemonNames from "../../Searchbar/pokemonNames";
 import pokemonNamesWithPics from "../../Searchbar/pokemonNamesWithPics";
 import TypeList from "../../TypeList/index";
-import CatchReleaseButton from "../../PokemonPresentor/CatchReleaseButton/index";
 
 const baseUrl = process.env.PORT || `http://localhost:3001/api`;
 const searchList = (list, input) => {
@@ -142,6 +141,12 @@ export default function Homepage() {
     setUserCollection(userCollectionArray);
     return userCollectionArray;
   };
+  // const getPokemonPicsOnly = async (allPictures, suggestionNames) => {
+  //     const pictureArray = []
+  //     allPictures.forEach((pokemon)=>{
+  //       if (pokemon.pokeName === )
+  //     })
+  // };
 
   useEffect(() => {
     (async () => {
@@ -153,10 +158,6 @@ export default function Homepage() {
       }
     })();
   }, []);
-
-  // useEffect(() => {
-
-  // }, [CatchReleaseButton]);
 
   return (
     <div>

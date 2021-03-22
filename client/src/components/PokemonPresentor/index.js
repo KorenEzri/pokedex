@@ -1,7 +1,5 @@
 import React from "react";
 import "./PokemonPresentor.css";
-import CatchReleaseButton from "./CatchReleaseButton/index";
-
 export default function PokemonPresentor({
   pokemonData,
   getTypeInfo,
@@ -49,11 +47,28 @@ export default function PokemonPresentor({
           );
         })}
       </div>
-      <CatchReleaseButton
-        pokemonData={pokemonData}
-        catchAndRelease={catchAndRelease}
-        getUserCollection={getUserCollection}
-      />
+      {pokemonData.isCaught && (
+        <button
+          onClick={async (e) => {
+            await catchAndRelease.release(pokemonData);
+            await getUserCollection();
+            e.target.hidden = true;
+          }}
+        >
+          Release!
+        </button>
+      )}
+      {!pokemonData.isCaught && (
+        <button
+          onClick={async (e) => {
+            await catchAndRelease.catch(pokemonData);
+            await getUserCollection();
+            e.target.hidden = true;
+          }}
+        >
+          Catch!
+        </button>
+      )}
     </div>
   );
 }
