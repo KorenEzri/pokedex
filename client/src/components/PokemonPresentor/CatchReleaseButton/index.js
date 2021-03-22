@@ -1,17 +1,20 @@
 import React from "react";
 
 export default function CatchReleaseButton({
-  catchController,
-  value,
-  isCaught,
+  catchAndRelease,
+  pokemonData,
+  getUserCollection,
 }) {
   return (
     <button
-      onClick={(e) => {
-        catchController(isCaught);
+      onClick={async (e) => {
+        await catchAndRelease.catch(pokemonData);
+        pokemonData.isCaught
+          ? await catchAndRelease.release(pokemonData)
+          : await getUserCollection();
       }}
     >
-      {value}
+      {pokemonData.isCaught ? "Release!" : "Catch"}
     </button>
   );
 }
