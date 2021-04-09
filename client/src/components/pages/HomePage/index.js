@@ -181,7 +181,6 @@ export default function Homepage() {
       setPokemonData(pokemonData);
     };
   }, [CatchReleaseButton]);
-
   return (
     <div>
       <section id="search-area">
@@ -194,7 +193,7 @@ export default function Homepage() {
             setTimeout(() => {
               setTextInputValue("");
               setSearchResultList([]);
-            }, 500);
+            }, 50000000);
           }}
           onChange={getSearchSuggestions}
           autoComplete="off"
