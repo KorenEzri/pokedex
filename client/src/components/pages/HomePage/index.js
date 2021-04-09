@@ -190,6 +190,12 @@ export default function Homepage() {
           placeholder="Search Pokemon"
           id="search-input"
           value={textInputValue}
+          onBlur={(e) => {
+            setTimeout(() => {
+              setTextInputValue("");
+              setSearchResultList([]);
+            }, 500);
+          }}
           onChange={getSearchSuggestions}
           autoComplete="off"
         />

@@ -11,11 +11,11 @@ export default function SearchResult({
   console.log(picture);
   return (
     <div>
-      <img className="pokePic" src={picture} />
+      <img className="pokePic" alt={value} src={picture} />
       <li
         key={index}
         className="search-result"
-        onClick={() => {
+        onClick={(e) => {
           sendSearchQuery(value);
           setSearchResultList("");
         }}

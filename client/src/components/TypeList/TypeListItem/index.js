@@ -8,7 +8,7 @@ export default function TypeListItem({
 }) {
   return (
     <div>
-      <img className="type-pokepic" src={picture} />
+      <img className="type-pokepic" alt={pokemon} src={picture} />
       <li
         key={index}
         className="pokemon-list-item"
