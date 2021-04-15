@@ -26,3 +26,8 @@
 .pokemon-wrapper:focus {
   outline: none;
 }
+@media only screen and (max-width: 600px) {
+  #name {
+    font-size: 1.5rem !important;
+  }
+}

@@ -9,11 +9,11 @@ function App() {
       <div className="main">
         <Router>
           <Switch>
-            <Route path="/404">
-              <NotFound />
-            </Route>
-            <Route path="/">
+            <Route exact path="/">
               <HomePage />
+            </Route>
+            <Route>
+              <NotFound />
             </Route>
           </Switch>
         </Router>

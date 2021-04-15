@@ -34,6 +34,7 @@ export default function PokemonPresentor({
             e.target.src = `${pokemonData.pictures.front}`;
           }}
           src={pokemonData.pictures.front}
+          alt={pokemonData.name}
         />
       ) : (
         <p>This poke is very rare, and hence has yet to've been documented</p>
